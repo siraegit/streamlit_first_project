@@ -119,3 +119,5 @@ if meal_info:
             f"{heart_emoji} {item}</div>", 
             unsafe_allow_html=True
         )
+
+st.write("made by 시래기T")
