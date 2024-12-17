@@ -103,7 +103,10 @@ else:
     meal_info = get_meal_data(today_str)
 
 if meal_info:
-    st.markdown(" 🍽️**   M  E  N  U   **🍱 ")
+    st.markdown(
+    "<h2 style='font-size: 36px; font-weight: bold; text-align: center;'>🍽️   M  E  N  U   🍱</h2>", 
+    unsafe_allow_html=True
+)
     # 각 급식 항목 앞에 하트 이모지를 추가
     meal_items = meal_info.split('\n')  # 줄바꿈 기준으로 나누기
     heart_emoji = "❤️"  # 하트 이모지
