@@ -35,7 +35,7 @@ meal_code = "2"  # 2는 "중식"을 의미
 
 # Streamlit UI 설정
 st.title("오늘의 급식")
-st.write(f"현재 시각 (한국 시각): {now.strftime('%Y-%m-%d %H:%M:%S')}")
+st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')}")
 
 # 급식 정보 가져오기 함수
 def get_meal_data(date_str):
