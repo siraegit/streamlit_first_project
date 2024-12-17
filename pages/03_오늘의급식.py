@@ -96,10 +96,10 @@ def get_meal_data(date_str):
 
 # 급식 정보 출력
 if is_after_2pm:
-    st.write("오늘의 급식이 끝났으니 내일의 급식 정보를 보여드립니다.")
+    st.write("오늘 급식은 끝났으니 내일의 급식 정보를 보여드립니다 :D")
     meal_info = get_meal_data(tomorrow_str)
 else:
-    st.write("오늘의 급식 정보를 보여드립니다.")
+    st.write("오늘의 급식입니다 :D")
     meal_info = get_meal_data(today_str)
 
 if meal_info:
@@ -110,7 +110,7 @@ if meal_info:
     
     # 각 급식 항목 앞에 하트 이모지를 추가
     meal_items = meal_info.split('\n')  # 줄바꿈 기준으로 나누기
-    heart_emoji = "❤️"  # 하트 이모지
+    heart_emoji = "❤️ "  # 하트 이모지
 
     # 하트 이모지와 함께 항목을 출력하며 배경색을 설정
     for item in meal_items:
