@@ -34,7 +34,7 @@ else:
 meal_code = "2"  # 2는 "중식"을 의미
 
 # Streamlit UI 설정
-st.title("오늘 또는 내일의 급식 정보")
+st.title("오늘의 급식")
 st.write(f"현재 시각 (한국 시각): {now.strftime('%Y-%m-%d %H:%M:%S')}")
 
 # 급식 정보 가져오기 함수
@@ -96,7 +96,7 @@ def get_meal_data(date_str):
 
 # 급식 정보 출력
 if is_after_2pm:
-    st.write("현재 오후 2시 이후입니다. 내일의 급식 정보를 보여드립니다.")
+    st.write("오늘의 급식이 끝났으니 내일의 급식 정보를 보여드립니다.")
     meal_info = get_meal_data(tomorrow_str)
 else:
     st.write("오늘의 급식 정보를 보여드립니다.")
@@ -104,4 +104,10 @@ else:
 
 if meal_info:
     st.write("급식 메뉴:")
-    st.text(meal_info)  # 보기 좋게 나열된 급식 정보 출력
+    # 각 급식 항목 앞에 하트 이모지를 추가
+    meal_items = meal_info.split('\n')  # 줄바꿈 기준으로 나누기
+    heart_emoji = "❤️"  # 하트 이모지
+
+    # 하트 이모지와 함께 항목을 출력
+    for item in meal_items:
+        st.write(f"{heart_emoji} {item}")
