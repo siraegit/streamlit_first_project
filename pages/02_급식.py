@@ -39,7 +39,7 @@ else:
 meal_code = "2"  # 2는 "중식"을 의미
 
 # Streamlit UI 설정
-st.title("오늘의 급식")
+st.title("✨ 오늘의 급식 ✨")
 
 # st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')} ({week_days[day_of_week]})")  # 한국어 요일 추가
 
@@ -154,7 +154,7 @@ st.markdown(
 
 if meal_info:
     st.markdown(
-        f"<h2 style='font-size: 36px; font-weight: bold; text-align: center;'>🍽️   {date_str}   🍱</h2>", 
+        f"<h2 style='font-size: 36px; font-weight: bold; text-align: center;'>🍴   {date_str}   🍱</h2>", 
         unsafe_allow_html=True
     )
     # 급식 항목 출력
@@ -170,4 +170,7 @@ if meal_info:
             unsafe_allow_html=True
         )
 
-st.write("made by 시래기T")
+st.markdown(
+    "<p style='color: grey; font-style: italic;'>made by 시래기T</p>",
+    unsafe_allow_html=True
+)
