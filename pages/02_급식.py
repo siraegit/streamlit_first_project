@@ -23,7 +23,7 @@ week_days = ["월", "화", "수", "목", "금", "토", "일"]
 day_of_week = now.weekday()  # 현재 요일 번호 (0: 월요일, 6: 일요일)
 
 # 오후 2시 이후 체크
-is_after_2pm = current_time >= datetime.time(10, 35, 0)
+is_after_2pm = current_time >= datetime.time(14, 0, 0)
 
 # 내일 날짜 계산
 if is_after_2pm:
@@ -38,7 +38,7 @@ else:
 meal_code = "2"  # 2는 "중식"을 의미
 
 # Streamlit UI 설정
-st.title("✨ 오늘의 급식 ✨")
+st.title("✨ 오늘의 급식")
 
 # st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')} ({week_days[day_of_week]})")  # 한국어 요일 추가
 
