@@ -171,6 +171,7 @@ if meal_info:
         )
 
 st.markdown(
-    "<p style='color: grey; font-style: italic;'>made by 시래기T</p>",
+    "<p style='color: grey; font-style: italic; margin-top: 10px;'>made by 시래기T</p>",
     unsafe_allow_html=True
 )
+
