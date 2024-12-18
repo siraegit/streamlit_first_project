@@ -15,14 +15,14 @@ kst = pytz.timezone('Asia/Seoul')
 # 현재 날짜 및 시간 가져오기 (한국 시각 기준)
 now = datetime.datetime.now(kst)
 current_time = now.time()
-
-# 오늘 날짜와 요일 계산
+year = now.year
 month = str(now.month).zfill(2)  # 월을 두 자리로 포맷팅
 day = str(now.day).zfill(2)  # 일을 두 자리로 포맷팅
+today_str = f"{year}{month}{day}"  # YYYYMMDD 형식으로 현재 날짜 생성
 week_days = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
 day_of_week = now.weekday()  # 현재 요일 번호 (0: 월요일, 6: 일요일)
 
-# 날짜와 요일 포맷 (예: "12/18 (수)")
+# 날짜와 요일 포맷
 date_str = f"{month}/{day} ({week_days[day_of_week]})"
 
 # 오후 2시 이후 체크
@@ -40,6 +40,9 @@ meal_code = "2"  # 2는 "중식"을 의미
 
 # Streamlit UI 설정
 st.title("오늘의 급식")
+week_days = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
+day_of_week = now.weekday()  # 현재 요일 번호 (0: 월요일, 6: 일요일)
+st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')} ({week_days[day_of_week]})")  # 한국어 요일 추가
 
 # 급식 정보 가져오기 함수
 def get_meal_data(date_str):
@@ -151,7 +154,6 @@ st.markdown(
 )
 
 if meal_info:
-    # 메뉴 제목에 날짜와 요일 표시
     st.markdown(
         f"<h2 style='font-size: 36px; font-weight: bold;'>🍽️   {date_str}   🍱</h2>", 
         unsafe_allow_html=True
