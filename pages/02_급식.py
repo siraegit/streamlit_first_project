@@ -97,13 +97,14 @@ if meal_info:
 
     # 급식 항목 출력
     meal_items = meal_info.split('\n')
+        # 하트 이모지와 함께 급식 항목을 출력
     for i, item in enumerate(meal_items):
-    heart_emoji = heart_emoji_list[i % len(heart_emoji_list)]  # 리스트 길이에 맞게 순서대로 하트 이모지 선택
-    st.markdown(
-        f"<div style='background-color: #f0f0f0; padding: 10px; margin-bottom: 10px; border-radius: 5px;'>"
-        f"{heart_emoji} {item}</div>", 
-        unsafe_allow_html=True
-    )
+        heart_emoji = heart_emoji_list[i % len(heart_emoji_list)]  # 리스트 길이에 맞게 순서대로 하트 이모지 선택
+        st.markdown(
+            f"<div style='background-color: #f0f0f0; padding: 10px; margin-bottom: 10px; border-radius: 5px;'>"
+            f"{heart_emoji} {item}</div>", 
+            unsafe_allow_html=True
+        )
 else:
     st.error("급식 정보를 불러올 수 없습니다.")
 
