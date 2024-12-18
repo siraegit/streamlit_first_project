@@ -14,6 +14,11 @@ kst = pytz.timezone('Asia/Seoul')
 now = datetime.datetime.now(kst)
 current_time = now.time()
 today_str = now.strftime("%Y%m%d")
+# 한국어 요일 리스트
+days_korean = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
+
+# 현재 요일 계산
+current_day_korean = days_korean[now.weekday()]
 
 # 오후 2시 이후 체크
 is_after_2pm = current_time >= datetime.time(14, 0, 0)
@@ -27,7 +32,8 @@ else:
 meal_code = "2"  # 중식
 
 st.title("🍴 오늘의 급식")
-st.write(f"현재 시각 : {now.strftime('%Y년 %m월 %d일 %H:%M')}")
+# 현재 시각과 요일 출력
+st.write(f"현재 시각 : {now.strftime('%Y년 %m월 %d일')} ({current_day_korean}) {now.strftime('%H:%M')}")
 
 def get_meal_data(date_str):
     params = {
