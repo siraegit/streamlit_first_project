@@ -21,7 +21,7 @@ days_korean = ['월요일', '화요일', '수요일', '목요일', '금요일', 
 current_day_korean = days_korean[now.weekday()]
 
 # 오후 2시 이후 체크
-is_after_2pm = current_time >= datetime.time(14, 0, 0)
+is_after_2pm = current_time >= datetime.time(9, 45, 0)
 
 if is_after_2pm:
     tomorrow = now + datetime.timedelta(days=1)
