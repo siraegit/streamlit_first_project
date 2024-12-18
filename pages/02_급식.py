@@ -26,7 +26,7 @@ day_of_week = now.weekday()  # 현재 요일 번호 (0: 월요일, 6: 일요일)
 date_str = f"{month}/{day} ({week_days[day_of_week]})"
 
 # 오후 2시 이후 체크
-is_after_2pm = current_time >= datetime.time(14, 0, 0)
+is_after_2pm = current_time >= datetime.time(10, 26, 0)
 
 # 내일 날짜 계산
 if is_after_2pm:
