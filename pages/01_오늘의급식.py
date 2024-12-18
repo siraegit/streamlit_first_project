@@ -19,6 +19,8 @@ year = now.year
 month = str(now.month).zfill(2)  # 월을 두 자리로 포맷팅
 day = str(now.day).zfill(2)  # 일을 두 자리로 포맷팅
 today_str = f"{year}{month}{day}"  # YYYYMMDD 형식으로 현재 날짜 생성
+week_days = ["월", "화", "수", "목", "금", "토", "일"]
+day_of_week = now.weekday()  # 현재 요일 번호 (0: 월요일, 6: 일요일)
 
 # 오후 2시 이후 체크
 is_after_2pm = current_time >= datetime.time(14, 0, 0)
@@ -27,15 +29,18 @@ is_after_2pm = current_time >= datetime.time(14, 0, 0)
 if is_after_2pm:
     tomorrow = now + datetime.timedelta(days=1)
     tomorrow_str = f"{tomorrow.year}{str(tomorrow.month).zfill(2)}{str(tomorrow.day).zfill(2)}"
+    date_str = f"{str(tomorrow.month).zfill(2)}/{str(tomorrow.day).zfill(2)} ({week_days[tomorrow.weekday()]})"
 else:
     tomorrow_str = today_str
+    date_str = f"{month}/{day} ({week_days[day_of_week]})"
 
 # 식사 코드 (중식)
 meal_code = "2"  # 2는 "중식"을 의미
 
 # Streamlit UI 설정
-st.title("오늘의 급식")
-st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')}")
+st.title("✨ 오늘의 급식")
+
+# st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')} ({week_days[day_of_week]})")  # 한국어 요일 추가
 
 # 급식 정보 가져오기 함수
 def get_meal_data(date_str):
@@ -99,25 +104,72 @@ if is_after_2pm:
     st.write("오늘 급식은 끝났으니 내일의 급식 정보를 보여드립니다 :D")
     meal_info = get_meal_data(tomorrow_str)
 else:
-    st.write("오늘의 급식입니다 :D")
+    st.write("오늘의 급식입니다. 맛점 :D")
     meal_info = get_meal_data(today_str)
+
+# 하트 이모지 리스트
+heart_emoji_list = ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎"]
+
+# 다크모드와 라이트모드를 위한 CSS 추가
+st.markdown(
+    """
+    <style>
+    .meal-item {
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    /* 기본 라이트 모드 스타일 */
+    body {
+        background-color: #ffffff;
+        color: black;
+    }
+    /* 다크 모드 스타일 */
+    @media (prefers-color-scheme: dark) {
+        body {
+            background-color: #121212;
+            color: white;
+        }
+        .meal-item {
+            background-color: #333333;
+            color: white;
+        }
+    }
+    /* 라이트 모드에서의 meal-item 스타일 */
+    @media (prefers-color-scheme: light) {
+        .meal-item {
+            background-color: #f0f0f0;
+            color: black;
+        }
+    }
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
 
 if meal_info:
     st.markdown(
-        "<h2 style='font-size: 36px; font-weight: bold;'>🍽️   M  E  N  U   🍱</h2>", 
+        f"<h2 style='font-size: 36px; font-weight: bold; text-align: center;'>🍴   {date_str}   🍱</h2>", 
         unsafe_allow_html=True
     )
-    
-    # 각 급식 항목 앞에 하트 이모지를 추가
-    meal_items = meal_info.split('\n')  # 줄바꿈 기준으로 나누기
-    heart_emoji = "❤️ "  # 하트 이모지
+    # 급식 항목 출력
+    meal_items = meal_info.split('\n')
 
-    # 하트 이모지와 함께 항목을 출력하며 배경색을 설정
-    for item in meal_items:
+    # 하트 이모지와 함께 급식 항목을 출력
+    for i, item in enumerate(meal_items):
+        heart_emoji = heart_emoji_list[i % len(heart_emoji_list)]  # 리스트 길이에 맞게 순서대로 하트 이모지 선택
         st.markdown(
-            f"<div style='background-color: #f0f0f0; padding: 10px; margin-bottom: 10px; border-radius: 5px;'>"
-            f"{heart_emoji} {item}</div>", 
+            f"<div class='meal-item'>"
+            f"<span>{heart_emoji}</span><span>{item}</span><span>{heart_emoji}</span>"
+            f"</div>", 
             unsafe_allow_html=True
         )
 
-st.write("made by 시래기T")
+st.markdown(
+    "<p style='color: grey; font-style: italic; margin-top: 10px; text-align: right;'>made by 시래기T</p>",
+    unsafe_allow_html=True
+)
