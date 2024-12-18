@@ -103,6 +103,7 @@ else:
     meal_info = get_meal_data(today_str)
 
 if meal_info:
+    console.log("jkasdfjk")
     st.markdown(
         "<h2 style='font-size: 36px; font-weight: bold;'>🍽️   M  E  N  U   🍱</h2>", 
         unsafe_allow_html=True
