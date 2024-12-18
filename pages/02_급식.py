@@ -62,7 +62,13 @@ def get_meal_data(date_str):
         st.error(f"오류 발생: {e}")
         return None
 
-meal_info = get_meal_data(tomorrow_str if is_after_2pm else today_str)
+# 급식 정보 출력
+if is_after_2pm:
+    st.write("오늘 급식은 끝났으니 내일의 급식 정보를 보여드립니다 :D")
+    meal_info = get_meal_data(tomorrow_str)
+else:
+    st.write("오늘의 급식입니다 :D")
+    meal_info = get_meal_data(today_str)
 
 if meal_info:
     st.markdown("<h2 style='font-size: 36px; font-weight: bold;'>🍽️   M  E  N  U   🍱</h2>", unsafe_allow_html=True)
@@ -97,4 +103,4 @@ if meal_info:
 else:
     st.error("급식 정보를 불러올 수 없습니다.")
 
-st.write("made by 시래기T")
+st.write("\nmade by 시래기T")
