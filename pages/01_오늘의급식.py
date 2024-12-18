@@ -111,32 +111,11 @@ if meal_info:
     meal_items = meal_info.split('\n')  # 줄바꿈 기준으로 나누기
     heart_emoji = "❤️ "  # 하트 이모지
     
-    # CSS 스타일 추가
-    st.markdown(
-        """
-        <style>
-        .meal-item {
-            background-color: #f0f0f0; /* 기본 배경색 */
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            color: black; /* 기본 텍스트 색상 */
-        }
-        @media (prefers-color-scheme: dark) {
-            .meal-item {
-                background-color: #333333; /* 다크모드 배경색 */
-                color: white; /* 다크모드 텍스트 색상 */
-            }
-        }
-        </style>
-        """, 
-        unsafe_allow_html=True
-    )
-    
-    # 급식 항목 출력
+        # 하트 이모지와 함께 항목을 출력하며 배경색을 설정
     for item in meal_items:
         st.markdown(
-            f"<div class='meal-item'>{heart_emoji} {item}</div>", 
+            f"<div style='background-color: #f0f0f0; padding: 10px; margin-bottom: 10px; border-radius: 5px;'>"
+            f"{heart_emoji} {item}</div>", 
             unsafe_allow_html=True
         )
 
