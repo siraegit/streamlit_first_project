@@ -16,7 +16,7 @@ current_time = now.time()
 today_str = now.strftime("%Y%m%d")
 # 한국어 요일 리스트
 days_korean = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
-
+heart_emoji_list = ["❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎"]
 # 현재 요일 계산
 current_day_korean = days_korean[now.weekday()]
 
@@ -97,9 +97,13 @@ if meal_info:
 
     # 급식 항목 출력
     meal_items = meal_info.split('\n')
-    heart_emoji = "❤️ "
-    for item in meal_items:
-        st.markdown(f"<div class='meal-item'>{heart_emoji}{item}</div>", unsafe_allow_html=True)
+    for i, item in enumerate(meal_items):
+    heart_emoji = heart_emoji_list[i % len(heart_emoji_list)]  # 리스트 길이에 맞게 순서대로 하트 이모지 선택
+    st.markdown(
+        f"<div style='background-color: #f0f0f0; padding: 10px; margin-bottom: 10px; border-radius: 5px;'>"
+        f"{heart_emoji} {item}</div>", 
+        unsafe_allow_html=True
+    )
 else:
     st.error("급식 정보를 불러올 수 없습니다.")
 
