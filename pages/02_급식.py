@@ -22,18 +22,17 @@ today_str = f"{year}{month}{day}"  # YYYYMMDD 형식으로 현재 날짜 생성
 week_days = ["월", "화", "수", "목", "금", "토", "일"]
 day_of_week = now.weekday()  # 현재 요일 번호 (0: 월요일, 6: 일요일)
 
-# 날짜와 요일 포맷
-date_str = f"{month}/{day} ({week_days[day_of_week]})"
-
 # 오후 2시 이후 체크
-is_after_2pm = current_time >= datetime.time(10, 26, 0)
+is_after_2pm = current_time >= datetime.time(10, 35, 0)
 
 # 내일 날짜 계산
 if is_after_2pm:
     tomorrow = now + datetime.timedelta(days=1)
     tomorrow_str = f"{tomorrow.year}{str(tomorrow.month).zfill(2)}{str(tomorrow.day).zfill(2)}"
+    date_str = f"{str(tomorrow.month).zfill(2)}/{str(tomorrow.day).zfill(2)} ({week_days[tomorrow.weekday()]})"
 else:
     tomorrow_str = today_str
+    date_str = f"{month}/{day} ({week_days[day_of_week]})"
 
 # 식사 코드 (중식)
 meal_code = "2"  # 2는 "중식"을 의미
