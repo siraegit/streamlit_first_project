@@ -107,11 +107,12 @@ if meal_info:
         "<h2 style='font-size: 36px; font-weight: bold;'>🍽️   M  E  N  U   🍱</h2>", 
         unsafe_allow_html=True
     )
+    
     # 각 급식 항목 앞에 하트 이모지를 추가
     meal_items = meal_info.split('\n')  # 줄바꿈 기준으로 나누기
     heart_emoji = "❤️ "  # 하트 이모지
-    
-        # 하트 이모지와 함께 항목을 출력하며 배경색을 설정
+
+    # 하트 이모지와 함께 항목을 출력하며 배경색을 설정
     for item in meal_items:
         st.markdown(
             f"<div style='background-color: #f0f0f0; padding: 10px; margin-bottom: 10px; border-radius: 5px;'>"
