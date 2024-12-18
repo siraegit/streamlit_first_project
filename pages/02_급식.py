@@ -26,8 +26,8 @@ else:
 
 meal_code = "2"  # 중식
 
-st.title("오늘의 급식")
-st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')}")
+st.title("🍴 오늘의 급식")
+st.write(f"현재 시각 : {now.strftime('%Y년 %m월 %d일 %H:%M')}")
 
 def get_meal_data(date_str):
     params = {
