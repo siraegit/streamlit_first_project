@@ -19,7 +19,7 @@ year = now.year
 month = str(now.month).zfill(2)  # 월을 두 자리로 포맷팅
 day = str(now.day).zfill(2)  # 일을 두 자리로 포맷팅
 today_str = f"{year}{month}{day}"  # YYYYMMDD 형식으로 현재 날짜 생성
-week_days = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
+week_days = ["월", "화", "수", "목", "금", "토", "일"]
 day_of_week = now.weekday()  # 현재 요일 번호 (0: 월요일, 6: 일요일)
 
 # 날짜와 요일 포맷
@@ -40,9 +40,8 @@ meal_code = "2"  # 2는 "중식"을 의미
 
 # Streamlit UI 설정
 st.title("오늘의 급식")
-week_days = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
-day_of_week = now.weekday()  # 현재 요일 번호 (0: 월요일, 6: 일요일)
-st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')} ({week_days[day_of_week]})")  # 한국어 요일 추가
+
+# st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')} ({week_days[day_of_week]})")  # 한국어 요일 추가
 
 # 급식 정보 가져오기 함수
 def get_meal_data(date_str):
@@ -106,7 +105,7 @@ if is_after_2pm:
     st.write("오늘 급식은 끝났으니 내일의 급식 정보를 보여드립니다 :D")
     meal_info = get_meal_data(tomorrow_str)
 else:
-    st.write("오늘의 급식입니다 :D")
+    st.write("오늘의 급식입니다. 맛점 :D")
     meal_info = get_meal_data(today_str)
 
 # 하트 이모지 리스트
@@ -155,7 +154,7 @@ st.markdown(
 
 if meal_info:
     st.markdown(
-        f"<h2 style='font-size: 36px; font-weight: bold;'>🍽️   {date_str}   🍱</h2>", 
+        f"<h2 style='font-size: 36px; font-weight: bold; text-align: center;'>🍽️   {date_str}   🍱</h2>", 
         unsafe_allow_html=True
     )
     # 급식 항목 출력
