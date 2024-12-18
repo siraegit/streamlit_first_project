@@ -35,7 +35,9 @@ meal_code = "2"  # 2는 "중식"을 의미
 
 # Streamlit UI 설정
 st.title("오늘의 급식")
-st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')} ({now.strftime('%A')})")  # 현재 시각과 요일 추가
+week_days = ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]
+day_of_week = now.weekday()  # 현재 요일 번호 (0: 월요일, 6: 일요일)
+st.write(f"현재 시각 : {now.strftime('%Y-%m-%d %H:%M:%S')} ({week_days[day_of_week]})")  # 한국어 요일 추가
 
 # 급식 정보 가져오기 함수
 def get_meal_data(date_str):
@@ -114,6 +116,9 @@ st.markdown(
         margin-bottom: 10px;
         border-radius: 5px;
         text-align: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     /* 기본 라이트 모드 스타일 */
     body {
@@ -145,7 +150,7 @@ st.markdown(
 
 if meal_info:
     st.markdown(
-        "<h2 style='font-size: 36px; font-weight: bold;'>🍽️   M  E  N  U   🍱</h2>", 
+        "<h2 style='font-size: 36px; font-weight: bold; text-align: center;'>🍽️   M  E  N  U   🍱</h2>", 
         unsafe_allow_html=True
     )
 
@@ -156,7 +161,9 @@ if meal_info:
     for i, item in enumerate(meal_items):
         heart_emoji = heart_emoji_list[i % len(heart_emoji_list)]  # 리스트 길이에 맞게 순서대로 하트 이모지 선택
         st.markdown(
-            f"<div class='meal-item'>{heart_emoji} {item}</div>", 
+            f"<div class='meal-item'>"
+            f"<span>{heart_emoji}</span><span>{item}</span><span>{heart_emoji}</span>"
+            f"</div>", 
             unsafe_allow_html=True
         )
 
