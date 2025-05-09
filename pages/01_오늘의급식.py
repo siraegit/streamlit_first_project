@@ -6,8 +6,8 @@ import pytz
 
 API_URL = "https://open.neis.go.kr/hub/mealServiceDietInfo"
 KEY = st.secrets['API_KEY']
-education_office_code = "J10"
-school_code = "7531050" 
+education_office_code = st.secrets['education_office_code']
+school_code = st.secrets['school_code']
 
 # 한국 시간대 (KST, UTC+9) 설정
 kst = pytz.timezone('Asia/Seoul')
