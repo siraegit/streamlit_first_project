@@ -148,7 +148,7 @@ def render_meal_page(school_name, office_code, sch_code):
     today_date_str = now.strftime("%Y%m%d")
     date_display = f"{now.strftime('%m월 %d일')} ({WEEK_DAYS[now.weekday()]})"
 
-    st.title(f"🍱 {school_name} 급식")
+    st.title(f"🍱 {school_name} 오늘의 급식")
     st.markdown(f"<div class='date-badge'>🗓️ {date_display}</div>", unsafe_allow_html=True)
 
     # 오늘의 급식
